@@ -20,7 +20,7 @@ function readLogs(logFile) {
     const logsArray = data.split('\r\n');    
 
     for(let logs of logsArray) {
-        const countryID = logs.slice(0,2);
+        const countryID = logs.slice(0,2); // ID do país (55 Brasil, 56 Chile, etc)
         const info = logs.split(' ')[1];
         storeInfo(countryID, info);        
     }
@@ -33,12 +33,12 @@ function storeInfo(countryID, info) {
         brazilInfo[0]++;
     } 
 
-    if(countryID === '56') {
+    if(countryID === '56') { // 56 --> Chile
         if(info === 'assinado') chileInfo[1]++;
         chileInfo[0]++;
     }
 
-    if(countryID === '52') {
+    if(countryID === '52') { // 52 --> México
         if(info === 'assinado') mexicoInfo[1]++
         mexicoInfo[0]++;
     }
