@@ -8,4 +8,4 @@ Digitar no terminal:
 node index.js 
 ```
 E em seguida passar o nome do arquivo como entrada (stdin) no terminal
-(OBS: o arquivo deve estar na pasta da aplicação)
+(OBS: pode-se passar o diretório do arquivo como C:/Users/pasta/logs.txt)

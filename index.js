@@ -21,7 +21,7 @@ function readLogs(logFile) {
 
     for(let logs of logsArray) {
         const countryID = logs.slice(0,2); // ID do país (55 Brasil, 56 Chile, etc)
-        const info = logs.split(' ')[1];
+        const info = logs.split(' ')[1]; // 'assinado' ou 'cancelado'
         storeInfo(countryID, info);        
     }
     printInfo();
