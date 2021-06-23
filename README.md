@@ -1,5 +1,6 @@
-# Logs-Reader-Bemobi
-Simple application made in JavaScript that reads logs from .txt files and show desired information.
+# Logs Reader: Dinâmica Bemobi
+Simple application made in JavaScript that reads logs from files and show desired information.
+Aplicação simples feita em JavaScript que lê logs de arquivos passados como stdin e mostra os dados desejados.
 
 ## How to Use
 Digitar no terminal:
