@@ -3,7 +3,6 @@ const fs = require('fs');
 const data = fs.readFileSync('./logs.txt', { encoding: 'utf-8' });
 const logsArray = data.split('\r\n');
 const brazilInfo = [0, 0], chileInfo = [0, 0], mexicoInfo = [0, 0] // array[users, actives] 
-// console.log(logsArray);
 
 for(let logs of logsArray) {
     const countryID = logs.slice(0,2);
@@ -35,8 +34,6 @@ function printInfo() {
 }
 
 printInfo();
-
-
 
 // melhorias --> hash table com a tupla countryID e o nome do país, apenas seria necessário
 // uma busca no hash para comparar o id e alterar as variáveis em questão (com template string)
