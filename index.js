@@ -1,13 +1,30 @@
 const fs = require('fs');
+const readline = require('readline');
 
-const data = fs.readFileSync('./logs.txt', { encoding: 'utf-8' });
-const logsArray = data.split('\r\n');
-const brazilInfo = [0, 0], chileInfo = [0, 0], mexicoInfo = [0, 0] // array[users, actives] 
+const brazilInfo = [0, 0], chileInfo = [0, 0], mexicoInfo = [0, 0]; // array[users, actives] 
 
-for(let logs of logsArray) {
-    const countryID = logs.slice(0,2);
-    const info = logs.split(' ')[1];
-    storeInfo(countryID, info);        
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+
+rl.question('Digite o arquivo log que deseja ler: ', (logFile) => {
+    console.log('');
+    readLogs(logFile);
+    rl.close();
+})
+
+function readLogs(logFile) {
+    const data = fs.readFileSync(logFile, { encoding: 'utf-8' });
+    const logsArray = data.split('\r\n');    
+
+    for(let logs of logsArray) {
+        const countryID = logs.slice(0,2);
+        const info = logs.split(' ')[1];
+        storeInfo(countryID, info);        
+    }
+    printInfo();
 }
 
 function storeInfo(countryID, info) {    
@@ -33,7 +50,6 @@ function printInfo() {
     console.log(`México, ${mexicoInfo[0]}, ${mexicoInfo[1]}`);
 }
 
-printInfo();
 
 // melhorias --> hash table com a tupla countryID e o nome do país, apenas seria necessário
 // uma busca no hash para comparar o id e alterar as variáveis em questão (com template string)
