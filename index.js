@@ -1,8 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const brazilInfo = [0, 0], chileInfo = [0, 0], mexicoInfo = [0, 0]; // array[users, actives] 
+// array[users, actives] 
+const brazilInfo = [0, 0], chileInfo = [0, 0], mexicoInfo = [0, 0]; 
 
+// Capturar o stdin do usuário
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -10,14 +12,14 @@ const rl = readline.createInterface({
 });
 
 rl.question('Digite o arquivo log que deseja ler: ', (logFile) => {
-    console.log('');
     readLogs(logFile);
     rl.close();
-})
+});
 
+// Função para ler os logs
 function readLogs(logFile) {
-    const data = fs.readFileSync(logFile, { encoding: 'utf-8' });
-    const logsArray = data.split('\r\n');    
+    const data = fs.readFileSync(logFile, { encoding: 'utf-8' }); // lê os dados do arquivo passado como parêmetro
+    const logsArray = data.split('\r\n'); // separar os espaços e tabs
 
     for(let logs of logsArray) {
         const countryID = logs.slice(0,2); // ID do país (55 Brasil, 56 Chile, etc)
@@ -27,6 +29,7 @@ function readLogs(logFile) {
     printInfo();
 }
 
+// Função para armazenar os dados do log nas variáveis referentes à cada país.
 function storeInfo(countryID, info) {    
     if(countryID === '55') { // 55 --> Brasil 
         if(info === 'assinado') brazilInfo[1]++;
@@ -44,12 +47,18 @@ function storeInfo(countryID, info) {
     }
 }
 
+// Função para armazenar os resultados da análise em um arquivo
 function printInfo() {
-    console.log(`Brasil, ${brazilInfo[0]}, ${brazilInfo[1]}`);
-    console.log(`Chile, ${chileInfo[0]}, ${chileInfo[1]}`);
-    console.log(`México, ${mexicoInfo[0]}, ${mexicoInfo[1]}`);
+    const analyzedData = `Brasil, ${brazilInfo[0]}, ${brazilInfo[1]}\nChile, ${chileInfo[0]}, ${chileInfo[1]}\nMéxico, ${mexicoInfo[0]}, ${mexicoInfo[1]}`;
+    
+    fs.writeFile('./analyzedData.txt', analyzedData, error => {
+        if(error) {
+            console.log(error);
+            return;
+        }
+        console.log("Arquivo de análise de dados criado com sucesso!\n");
+    });
 }
-
 
 // melhorias --> hash table com a tupla countryID e o nome do país, apenas seria necessário
 // uma busca no hash para comparar o id e alterar as variáveis em questão (com template string)
