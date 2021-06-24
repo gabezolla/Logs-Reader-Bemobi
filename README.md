@@ -2,10 +2,16 @@
 Simple application made in JavaScript that reads logs from files and show desired information.<br>
 Aplicação simples feita em JavaScript que lê logs de arquivos passados como stdin e mostra os dados desejados.
 
+
+## Considerações
+
+:bangbang: É necessário ter o Node.JS instalado :bangbang: <br>
+Para se certificar que possui o node em sua máquina, basta digitar no prompt:
+```bash
+node -v
+```
+
 ## How to Use
-
-:bangbang: É necessário ter o Node.JS instalado :bangbang:
-
 
 :one:	Ir até a pasta do arquivo a partir do terminal (cd C:/.../);
 
