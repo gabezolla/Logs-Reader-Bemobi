@@ -32,8 +32,8 @@ function readLogs(logFile) {
 // Função para armazenar os dados do log nas variáveis referentes à cada país.
 function storeInfo(countryID, info) {    
     if(countryID === '55') { // 55 --> Brasil 
-        if(info === 'assinado') brazilInfo[1]++;
-        brazilInfo[0]++;
+        if(info === 'assinado') brazilInfo[1]++; // Actives
+        brazilInfo[0]++; // Total users
     } 
 
     if(countryID === '56') { // 56 --> Chile
